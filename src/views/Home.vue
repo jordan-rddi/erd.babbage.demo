@@ -3,6 +3,7 @@
     <h1>{{ storedData }}</h1>
     <form @submit.prevent="submitData">
       <input type="text" name="data">
+      <button type="submit">Set</button>
     </form>
   </div>
 </template>
@@ -33,7 +34,13 @@ export default {
     submitData (event) {
       let data = event.target.elements.data.value;
 
-      console.log(data);
+      SimpleStorage.setStoredData(data)
+        .then(receipt => {
+          this.storedData = data; // update display
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
   }
 }
