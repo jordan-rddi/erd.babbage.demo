@@ -8,13 +8,26 @@
 </template>
 
 <script>
+const SimpleStorage = require("@/lib/SimpleStorage.js");
+
+console.log(SimpleStorage);
+
 export default {
   name: 'Home',
   components: {},
   data() {
     return {
-      storedData: 0
+      storedData: '-'
     }
+  },
+  created() {
+    SimpleStorage.getStoredData()
+      .then(_storedData => {
+        this.storedData = _storedData;
+      })
+      .catch(error => {
+        console.log(error);
+      })
   },
   methods: {
     submitData (event) {
