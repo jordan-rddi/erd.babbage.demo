@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>{{ storedData }}</h1>
+    <form @submit.prevent="submitData">
+      <input type="text" name="data">
+    </form>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  components: {},
+  data() {
+    return {
+      storedData: 0
+    }
+  },
+  methods: {
+    submitData (event) {
+      let data = event.target.elements.data.value;
+
+      console.log(data);
+    }
   }
 }
 </script>
